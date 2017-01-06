@@ -19,9 +19,11 @@ export default function Card({ value, shown, style }) {
     const card = getCardFromValue(value);
 
     return (
-      <div className="card" style={style}>
+      <div className={`card ${card.suit}`} style={style}>
+        <div className="wrapper">
         <div className="suit">{card.suit}</div>
         <div className="text">{card.text}</div>
+      </div>
       </div>
     )
   }

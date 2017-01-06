@@ -30,5 +30,19 @@ export function deal(cards = [], numberOfPlayers = 2) {
   return hands;
 }
 
-// export function draw(cards, numberToDraw = 1) {
-// }
+export function draw(cards, numberOfCards = 1) {
+  const drawn = [];
+  while(numberOfCards) {
+    drawn.push(cards.shift());
+    numberOfCards--;
+  }
+  return drawn;
+}
+
+export function last(cards) {
+  return cards[cards.length-1];
+}
+
+export function cardValue(card) {
+  return parseInt(card, 10);
+}
