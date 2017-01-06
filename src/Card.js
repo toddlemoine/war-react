@@ -14,17 +14,17 @@ function getCardFromValue(value) {
   return { suit, text };
 }
 
-export default function Card({ value, shown }) {
+export default function Card({ value, shown, style }) {
   if (shown) {
     const card = getCardFromValue(value);
 
     return (
-      <div className="card">
+      <div className="card" style={style}>
         <div className="suit">{card.suit}</div>
         <div className="text">{card.text}</div>
       </div>
     )
   }
 
-  return <div className="card facedown"/>;
+  return <div className="card facedown" style={style}/>;
 }

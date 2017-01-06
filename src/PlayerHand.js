@@ -3,8 +3,11 @@ import Card from './Card';
 
 export default function PlayerHand({ player }) {
 
-  const cards = player.cards.map( card => {
-    return <Card />
+  const cards = player.cards.map( ( card, index ) => {
+    const style = {
+      transform: `translateY(-${index}px)`
+    };
+    return <Card key={index} style={style} value={card} shown={false} />
   });
 
   const hand = player.hand.map( ( card, index ) => {
