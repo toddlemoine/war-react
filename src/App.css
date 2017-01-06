@@ -1,0 +1,28 @@
+body {
+  background: forestgreen;
+  color: #fff;
+  /* box-sizing: border-box; */
+}
+
+.gametable {
+  padding: 1em;
+}
+
+.players {
+  display: flex;
+}
+
+.player {
+  flex: 1 1 auto;
+  border: 1px solid gold;
+  padding: 1em;
+  text-align: center;
+} 
+
+.card {
+  width: 100px;
+  height: 175px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 0px 3px rgb(0,0,0,.5);
+}
