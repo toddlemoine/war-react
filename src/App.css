@@ -13,6 +13,7 @@ body {
 
 .players {
   display: flex;
+  height: 400px;
 }
 
 .player {

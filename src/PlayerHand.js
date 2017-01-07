@@ -11,8 +11,10 @@ export default function PlayerHand({ player }) {
   });
 
   const hand = player.hand.map( ( card, index ) => {
-    console.log('card', card)
-    return <Card shown={ index % 2 == 0 } value={card} />
+    const style = {
+      transform: `translateY(${index * 70}px)`
+    }
+    return <Card shown={ index % 2 == 0 } value={card} style={ style } />
   });
 
   return (

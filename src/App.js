@@ -15,7 +15,7 @@ class App extends Component {
     const hands = deal(cards, 2);
 
     this.state = {
-      war: false,
+      rounds: 0,
       players: [
         {name: 'A', cards:hands[0], hand: []},
         {name: 'B', cards:hands[1], hand: []}
@@ -25,35 +25,60 @@ class App extends Component {
 
   handleDraw() {
 
-    const { war } = this.state;
+    const { players, rounds } = this.state;
+    let war = false;
 
-    const players = this.state.players.map(player => {
+    // Clean up after last hand
+    if (rounds > 0) {
+      const winner = this.determineWinner(players);
+      war = !winner;
+
+      if (winner) {
+        const cardsWon = players
+          .filter(player => player != winner)
+          .map(player => player.hand.splice(0));
+        winner.cards = winner.cards.concat(...cardsWon, ...winner.hand);
+      }
+    }
+
+    function drawCards(player, war) {
       if (war) {
         player.hand = player.hand.concat(draw(player.cards, 2));
       } else {
-        // Add last played hand to cards first.
-        player.cards = player.cards.concat(player.hand);
-        // Draw new cards
         player.hand = draw(player.cards, 1);
       }
       return player;
-    });
+    }
 
     this.setState({
-      players,
-      war: this.isWar(players)
+      players: players.map(player => drawCards(player, war)),
+      rounds: rounds + 1
     });
+
   }
 
   isWar(players) {
     return cardValue(last(players[0].hand)) == cardValue(last(players[1].hand));
   }
 
+  determineWinner(players) {
+    const p1 = cardValue(last(players[0].hand));
+    const p2 = cardValue(last(players[1].hand));
+
+    if (p1 == p2)
+      return null;
+
+    return (p1 > p2) ? players[0] : players[1];
+  }
+
 
   render() {
     const { state, props } = this;
 
-    const message = state.isWar ? 'War!' : '';
+    let message = '';
+    if (this.isWar(state.players)) {
+      message = `War!`;
+    }
 
     return (
       <main>
@@ -70,6 +95,13 @@ class App extends Component {
           <PlayerHand player={state.players[1]} />
       </div>
 
+          <div>
+            Rounds: { state.rounds }
+            {
+              state.players
+              .map(player => <p>{`Player ${player.name}: ${player.cards.length}`}</p>)
+                }
+          </div>
 
         </Gametable>
       </main>
