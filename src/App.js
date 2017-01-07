@@ -47,7 +47,7 @@ class App extends Component {
   autoPlay() {
     this.autoPlayIntervalId = setInterval(() => {
       this.playRound();
-    }, 50);
+    }, 200);
   }
 
   stopAutoPlay() {
@@ -77,7 +77,7 @@ class App extends Component {
 
       if (winner) {
         const cardsWon = this.gatherCardsWon(players, winner);
-        winner.cards = winner.cards.concat(...cardsWon, winner.hand.splice(0));
+        winner.cards = winner.cards.concat(...cardsWon, ...winner.hand.splice(0));
       }
 
       if (this.isGameOver(players)) {
@@ -134,19 +134,19 @@ class App extends Component {
               onClick={this.autoPlay.bind(this)}
               disabled={this.autoPlayIntervalId} />
             <DealButton onClick={this.playRound.bind(this)} />
-            <p>{message}</p>
         </header>
+
         <div className="players">
           <PlayerHand player={state.players[0]} />
           <PlayerHand player={state.players[1]} />
-      </div>
+        </div>
 
-          <div>
-            Rounds: { state.rounds } ({ state.wars} wars)
+          <div className="status">
+            { state.rounds } rounds ({state.wars} wars) {message}
             {
               state.players
               .map(player => <p>{`Player ${player.name}: ${player.cards.length}`}</p>)
-                }
+            }
           </div>
 
         </Gametable>

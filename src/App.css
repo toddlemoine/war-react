@@ -69,3 +69,7 @@ body {
   line-height: 200%;
   font-weight: bolder;
 }
+
+.status {
+  text-align: center;
+}
