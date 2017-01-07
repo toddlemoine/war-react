@@ -21,11 +21,11 @@ export default function PlayerHand({ player }) {
     <div className="player">
       <header>{ player.name }</header>
       <div className="cards">
-      {cards}
-    </div>
+        {cards}
+      </div>
       <div className="current-hand">
-      {hand}
-    </div>
+        {hand}
+      </div>
     </div>
   )
 }

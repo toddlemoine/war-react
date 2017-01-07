@@ -7,6 +7,13 @@ const cardMap = {
   14: 'A'
 };
 
+const suits = {
+  C: "\u2663",
+  H: "\u2665",
+  S: "\u2660",
+  D: "\u2666"
+};
+
 function getCardFromValue(value) {
   const suit = value.charAt(value.length-1);
   const parsedValue = parseInt(value, 10);
@@ -21,7 +28,7 @@ export default function Card({ value, shown, style }) {
     return (
       <div className={`card ${card.suit}`} style={style}>
         <div className="wrapper">
-        <div className="suit">{card.suit}</div>
+        <div className="suit">{suits[card.suit]}</div>
         <div className="text">{card.text}</div>
       </div>
       </div>
