@@ -19,7 +19,6 @@ export default function PlayerHand({ player }) {
 
   return (
     <div className="player">
-      <header>{ player.name }</header>
       <div className="cards">
         {cards}
       </div>

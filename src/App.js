@@ -44,10 +44,11 @@ class App extends Component {
     })
   }
 
-  autoPlay() {
+  autoPlay(rate = 10) {
+    this.stopAutoPlay();
     this.autoPlayIntervalId = setInterval(() => {
       this.playRound();
-    }, 200);
+    }, rate);
   }
 
   stopAutoPlay() {
@@ -131,6 +132,7 @@ class App extends Component {
           <header>
             <NewGameButton onClick={this.newGame.bind(this)} />
             <AutoPlayButton
+              onChange={(rate) => this.autoPlayIntervalId && this.autoPlay(rate)}
               onClick={this.autoPlay.bind(this)}
               disabled={this.autoPlayIntervalId} />
             <DealButton onClick={this.playRound.bind(this)} />

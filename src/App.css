@@ -7,6 +7,11 @@ body {
   color: #fff;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+}
+
 .gametable {
   padding: 1em;
 }
@@ -27,7 +32,14 @@ body {
 } 
 
 .cards {
+  position: absolute;
+  top: 0;
   transform: scale(.6);
+}
+
+.current-hand {
+  width: 100%;
+  margin: 0 50%;
 }
 
 .card {
@@ -72,4 +84,10 @@ body {
 
 .status {
   text-align: center;
+}
+
+.autoplay {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1em;
 }
